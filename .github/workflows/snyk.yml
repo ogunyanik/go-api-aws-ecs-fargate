@@ -1,0 +1,35 @@
+name: Snyk Security Scan
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  security_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Compose
+        run: docker-compose up -d
+
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
+      - name: Snyk auth
+        run: snyk auth
+        
+      - name: Snyk Security Scan
+        run: snyk test --docker
+
+      # You can add more steps here based on your requirements,
+      # such as deploying the application or sending notifications.
+
+      - name: Tear down Docker Compose
+        run: docker-compose down
