@@ -19,9 +19,10 @@ func main() {
 		return c.SendString("Hello late World  v4👋!")
 	})
 
+	var pass = "snyk test password"
 	app.Get("/password", func(c *fiber.Ctx) error {
 		time.Sleep(2 * time.Second)
-		return c.SendString("Your password is   v4👋!")
+		return c.SendString(pass)
 	})
 	app.Listen(":80")
 
