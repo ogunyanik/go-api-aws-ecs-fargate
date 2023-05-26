@@ -18,6 +18,11 @@ func main() {
 		time.Sleep(2 * time.Second)
 		return c.SendString("Hello late World  v4👋!")
 	})
+
+	app.Get("/password", func(c *fiber.Ctx) error {
+		time.Sleep(2 * time.Second)
+		return c.SendString("Your password is   v4👋!")
+	})
 	app.Listen(":80")
 
 }
