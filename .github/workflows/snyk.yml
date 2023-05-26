@@ -26,10 +26,16 @@ jobs:
         run: snyk auth
         
       - name: Snyk Security Scan
-        run: snyk test --docker
+        run: snyk test ${{ secrets.SNYK_TOKEN }} --docker
 
       # You can add more steps here based on your requirements,
       # such as deploying the application or sending notifications.
 
       - name: Tear down Docker Compose
         run: docker-compose down
+
+
+
+
+
+
