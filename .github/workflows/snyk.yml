@@ -26,7 +26,7 @@ jobs:
         run: snyk auth ${{ secrets.SNYK_TOKEN }}
 
       - name: Run Snyk on Docker Compose
-        run: snyk container test 
+        run: snyk test 
 
       # You can add more steps here based on your requirements,
       # such as deploying the application or sending notifications.
