@@ -1,35 +1,13 @@
-name: Snyk Security Scan
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
+name: Example workflow for Golang using Snyk
+on: push
 jobs:
-  security_scan:
+  security:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Docker Compose
-        run: docker-compose up -d
-
-      - name: Install Snyk CLI
-        run: npm install -g snyk
-
-      - name: Authenticate with Snyk
-        run: snyk auth ${{ secrets.SNYK_TOKEN }}
-
-      - name: Run Snyk on Docker Compose
-        run: snyk test 
-
-      # You can add more steps here based on your requirements,
-      # such as deploying the application or sending notifications.
-
-      - name: Tear down Docker Compose
-        run: docker-compose down
+      - uses: actions/checkout@master
+      - name: List project files
+        run: ls -R
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/golang@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
