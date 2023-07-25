@@ -14,7 +14,7 @@ func TestLateEndpoint(t *testing.T) {
 }
 
 func TestPasswordEndpoint(t *testing.T) {
-
+	t.Errorf("Expected password: %s, but got: %s", "expectedPassword", "actualPassword")
 }
 
 func TestMain(t *testing.T) {
